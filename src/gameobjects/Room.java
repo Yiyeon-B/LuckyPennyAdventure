@@ -50,9 +50,9 @@ public class Room extends EncounterCount {
     }
 
     public String describe() {
-        return String.format("%s. %s.", //initial output: "You are in the Troll Room. A dank room that smells of troll. Only one %s. outputs "You are in the Troll Room." Omits description. No %s. outputs "You are in the" only
+        return String.format("%s. %s", //initial output: "You are in the Troll Room. A dank room that smells of troll. Only one %s. outputs "You are in the Troll Room." Omits description. No %s. outputs "You are in the" only
                 getName(), getDescription())
-                + "\nThings here:\n" + getEncounterList().describeThings(); //initial output: "Things here: \n carrot: It is a very crunchy carrot"
+                + "\nYou notice... \n" + getEncounterList().describeThings(); //initial output: "Things here: \n carrot: It is a very crunchy carrot"
     }
 
 }
