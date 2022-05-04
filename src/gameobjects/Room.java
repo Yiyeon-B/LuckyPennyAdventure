@@ -1,58 +1,24 @@
 package gameobjects;
 
-public class Room extends EncounterCount {
+public class Room {
 
-    private int n, s, e, w;
+    private String name;
+    private String description;
+    private Encounter encounter;
 
-    public Room(String aName, String aDescription, int aN, int aS, int aE, int aW, EncounterList tl) {
-        super(aName, aDescription, tl); // inherits from Thing.java
-        n = aN;
-        s = aS;
-        e = aE;
-        w = aW;
+
+    public Room(String name, String description, Encounter encounter) {
+        this.name = name;
+        this.description = description;
+        this.encounter = encounter;
     }
 
-    // --- accessor methods ---
-    // n
-    public int getN() {
-        return n;
+
+    public void setDescription(String changedDescription) {
+        description = changedDescription;
     }
 
-    public void setN(int aN) {
-        n = aN;
+    public void setEncounter(Encounter changedEncounter) {
+        encounter = changedEncounter;
     }
-
-    // s
-    public int getS() {
-        return s;
-    }
-
-    public void setS(int aS) {
-        s = aS;
-    }
-
-    // e
-    public int getE() {
-        return e;
-    }
-
-    public void setE(int aE) {
-        e = aE;
-    }
-
-    // w
-    public int getW() {
-        return w;
-    }
-
-    void setW(int aW) {
-        w = aW;
-    }
-
-    public String describe() {
-        return String.format("%s. %s", //initial output: "You are in the Troll Room. A dank room that smells of troll. Only one %s. outputs "You are in the Troll Room." Omits description. No %s. outputs "You are in the" only
-                getName(), getDescription())
-                + "\nYou notice... \n" + getEncounterList().describeThings(); //initial output: "Things here: \n carrot: It is a very crunchy carrot"
-    }
-
 }

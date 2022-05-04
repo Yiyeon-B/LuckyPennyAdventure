@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class GameStart {
+public class Application {
 
     public static void main(String[] args) throws IOException { //throws keyword indicates what exception type can be thrown by a method. IOException (Input/Output Exception)
         BufferedReader in; //Basically like Scanner but simpler, takes in player input efficiently
