@@ -6,178 +6,162 @@ import gameobjects.*;
 
 public class Game {
 
-    private ArrayList <Room>map; // declared the map - an ArrayList of Rooms. You can modify ArrayLists (e.g. add/subtract items, set new values), but not Arrays. <Room> object is the data type of the ArrayList. map is the name of the ArrayList
-    private Protagonist player;  // the player - provides 'first person perspective'
+    private boolean isGameOver;
 
-    List<String> commands = new ArrayList<>(Arrays.asList("y", "n"));
-    List<String> objects = new ArrayList<>(Arrays.asList("ENCOUNTER"));
+    private Map<Room, ArrayList<Room>> map; // Created a Map with key value pair of Room to ArrayList of Room(s) named map. ArrayList<Room> shows a list of rooms you can enter from the specified Room
+
+    private Room currentRoom;
+
+    private List<String> commands = new ArrayList<>(Arrays.asList("Y", "N"));
 
     public Game() {
-        map = new ArrayList<Room>(); //initialized map // TODO: Make map a Generic list of Room
 
-        Encounter subwayEncounter = new Encounter();
+//        Encounter subwayEncounter = new Encounter();
+//
+//        Encounter subwayEntranceEncounter = new Encounter();
+//
+//        Encounter bookstoreEncounter = new Encounter();
+//        bookstoreEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+//
+//        Encounter coffeeShopEncounter = new Encounter();
+//        coffeeShopEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+//
+//        Encounter crosswalkEncounter = new Encounter();
+//
+//        Encounter parkEncounter = new Encounter();
+//        parkEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+//
+//        Encounter swingSetEncounter = new Encounter();
+//        swingSetEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+//
+//        Encounter lakeEncounter = new Encounter();
+//        lakeEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+//
+//        Encounter playerlist = new Encounter(); //populated by encounter count
+//
+//        // Add Rooms to the map
+//        //                 Room( name,   description,                             N,       S,      E,      W )
+//        map.add(new Room("SUBWAY", "\nA magical place where humans hop on an underground train \nand get whisked away to a destination of their heart's desire!"));
+//        map.add(new Room("SUBWAY ENTRANCE", "\nRight outside the entrance to my home and before the whole, wide world! \nYou can go anywhere from here!"));
+//        map.add(new Room("BOOKSTORE", "\nA store brimming with stories and ideas to peruse!"));
+//        map.add(new Room("COFFEE SHOP", "\nHumans frequent this location to imbibe curious liquids..."));
+//        map.add(new Room("CROSS WALK", "\nYou're crossing the street!"));
+//        map.add(new Room("PARK", "\nA lovely recreational area to enjoy fresh air, blue sky, and dogs!"));
+//        map.add(new Room("SWING SET", "\nHumans employ these to mimic flight while remaining safely seated."));
+//        map.add(new Room("LAKE", "\nThe water has a calming effect on coins and humans alike."));
 
-        Encounter subwayEntranceEncounter = new Encounter();
+        Room hallway = new Room("hallway", "a hallway in the Damascus house");
+        Room bathroom = new Room("bathroom", "a bathroom in the Damascus house");
 
-        Encounter bookstoreEncounter = new Encounter();
-        bookstoreEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
+        Encounter tapEncounter = new Encounter("You see the tap is running. Do you turn it off?", "The tap is now off.", "The tap remains on.");
+        Encounter finalEncounter = new Encounter("Are you proud of yourself?", "Monkey purrs.", ";(");
 
-        Encounter coffeeShopEncounter = new Encounter();
-        coffeeShopEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
-
-        Encounter crosswalkEncounter = new Encounter();
-
-        Encounter parkEncounter = new Encounter();
-        parkEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
-
-        Encounter swingSetEncounter = new Encounter();
-        swingSetEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
-
-        Encounter lakeEncounter = new Encounter();
-        lakeEncounter.add(new Encounter("ENCOUNTER", "AN ENCOUNTER", 1));
-
-        Encounter playerlist = new Encounter(); //populated by encounter count
-
-        // Add Rooms to the map
-        //                 Room( name,   description,                             N,       S,      E,      W )
-        map.add(new Room("SUBWAY", "\nA magical place where humans hop on an underground train \nand get whisked away to a destination of their heart's desire!"));
-        map.add(new Room("SUBWAY ENTRANCE", "\nRight outside the entrance to my home and before the whole, wide world! \nYou can go anywhere from here!"));
-        map.add(new Room("BOOKSTORE", "\nA store brimming with stories and ideas to peruse!"));
-        map.add(new Room("COFFEE SHOP", "\nHumans frequent this location to imbibe curious liquids..."));
-        map.add(new Room("CROSS WALK", "\nYou're crossing the street!"));
-        map.add(new Room("PARK", "\nA lovely recreational area to enjoy fresh air, blue sky, and dogs!"));
-        map.add(new Room("SWING SET", "\nHumans employ these to mimic flight while remaining safely seated."));
-        map.add(new Room("LAKE", "\nThe water has a calming effect on coins and humans alike."));
-
-        // create player and place in Room 0 (i.e. the Room at 0 index of map)
-        player = new Protagonist("Penny", "a helpful little friend", map.get(0), playerlist); //map.get(0) is the "SUBWAY" Room entry in the ArrayList map. If this was a normal Array it would be map[0]. "SUBWAY" and everything in it is now the value of Room aRoom
+        Effect changeBathroom = new DescriptionChangeEffect(bathroom, "The bathroom in the Damascus house, but less moist.", "The bathroom in the Damascus house is ultra moist");
+        Effect unlockFinalEncounter = new UnlockEncounterEffect(hallway, finalEncounter);
     }
 
-    public Room kitchen = new Room("kitchen", "There is a raccoon in the kitchen.", new Encounter("Let the raccoon out?", true, "You open a window and the raccoon skedaddles.", "Your window of opportunity has closed. The raccoon lives here now.", "The kitchen is squeaky clean. (Will be a class later)"));
-    public DescriptionChangeEffect kitchenCleaned = new DescriptionChangeEffect(kitchen, "The kitchen is squeaky clean.");
-
-    public Encounter bathroom = new Encounter("There is a tiny chair in the toilet.", true, "You put the tiny chair on the floor for it to dry off.", "You flush the tiny chair.", "The chair is now out of the toilet.");
-    public UnlockEncounterEffect chairSave = new UnlockEncounterEffect(new Encounter("A tiny man three inches tall stands on the bath mat and thanks you for saving his chair. He holds out an itty bitty hand for you to take. Will you adventure with him?", true, "You take his hand and he whisks you away.", "You flush him down the toilet.", "You have reached the end of this game."));
+//    public Room kitchen = new Room("kitchen", "There is a raccoon in the kitchen.", new Encounter("Let the raccoon out?", true, "You open a window and the raccoon skedaddles.", "Your window of opportunity has closed. The raccoon lives here now.", "The kitchen is squeaky clean. (Will be a class later)"));
+//    public DescriptionChangeEffect kitchenCleaned = new DescriptionChangeEffect(kitchen, "The kitchen is squeaky clean.");
+//
+//    public Encounter bathroom = new Encounter("There is a tiny chair in the toilet.", true, "You put the tiny chair on the floor for it to dry off.", "You flush the tiny chair.", "The chair is now out of the toilet.");
+//    public UnlockEncounterEffect chairSave = new UnlockEncounterEffect(new Encounter("A tiny man three inches tall stands on the bath mat and thanks you for saving his chair. He holds out an itty bitty hand for you to take. Will you adventure with him?", true, "You take his hand and he whisks you away.", "You flush him down the toilet.", "You have reached the end of this game."));
 
 
     // access methods
 
     // move an Actor in direction 'dir'
-    private int moveTo(Protagonist anProtagonist, Direction dir) {
-        // return: Constant representing the room number moved to
-        // or NOEXIT
-        //
-        // try to move any Person (typically but not necessarily player)
-        // in direction indicated by dir
-        Room r = anProtagonist.getLocation(); //getLocation returns location (init Actor.java 22)
-        int exit;
-
-        if (exit != Direction.NOEXIT) {
-            moveActorTo(anProtagonist, map.get(exit)); //map ArrayList (init 15) gets int n/s/e/w or -1 (noexit). Use moveActorTo (init 57) to set Actor p location to aRoom.
-        }
-        return exit;
-    }
-
-
-    private void look() {
-        showStr("You are in the " + getPlayer().getLocation().describe());
-    }
 
     private void showStr(String s) {
         System.out.println(s);
     }
 
-    private void showInventory() {
-        showStr("You have " + getPlayer().getEncounter().describeThings());
-    }
+//    private void updateOutput(int roomNumber) {
+//        // if roomNumber = NOEXIT, display a special message, otherwise
+//        // display text (e.g. name and description of room)
+//        String s;
+//        if (roomNumber == Direction.NOEXIT) {
+//            s = "No Exit!";
+//        } else {
+//            Room r = getPlayer().getLocation();
+//            s = "You arrive at "
+//                    + r.getName() + ". " + r.getDescription();
+//        }
+//        System.out.println(s);
+//    }
 
-    private void updateOutput(int roomNumber) {
-        // if roomNumber = NOEXIT, display a special message, otherwise
-        // display text (e.g. name and description of room)
-        String s;
-        if (roomNumber == Direction.NOEXIT) {
-            s = "No Exit!";
-        } else {
-            Room r = getPlayer().getLocation();
-            s = "You arrive at "
-                    + r.getName() + ". " + r.getDescription();
-        }
-        System.out.println(s);
-    }
+//    private String processVerb(List<String> wordlist) {
+//        String verb;
+//        String msg = "";
+//        verb = wordlist.get(0);
+//        if (!commands.contains(verb)) {
+//            msg = verb + " is not a known verb! ";
+//        } else {
+//            switch (verb) {
+//                case "SUBWAY":
+//                    //go to SUBWAY;
+//                    //description
+//                    //if all encounters completed, final unlocked
+//                    break;
+//                case "SUBWAY ENTRANCE":
+//                    //go to SUBWAY ENTRANCE;
+//                    //description
+//                    //no encounter
+//                    break;
+//                case "BOOKSTORE":
+//                    //go to BOOKSTORE;
+//                    //description
+//                    break;
+//                case "COFFEE SHOP":
+//                    //go to COFFEE SHOP;
+//                    //description
+//                    break;
+//                case "CROSSWALK":
+//                    //go to CROSSWALK;
+//                    //description
+//                    break;
+//                case "PARK":
+//                    //go to PARK;
+//                    //description
+//                    break;
+//                case "SWING SET":
+//                    //go to SWING SET;
+//                    //description
+//                    break;
+//                case "LAKE":
+//                    //go to LAKE;
+//                    //description
+//                    break;
+//                default:
+//                    msg = verb + " (not yet implemented)";
+//                    break;
+//            }
+//        }
+//        return msg;
+//    }
 
-    private String processVerb(List<String> wordlist) {
-        String verb;
-        String msg = "";
-        verb = wordlist.get(0);
-        if (!commands.contains(verb)) {
-            msg = verb + " is not a known verb! ";
-        } else {
-            switch (verb) {
-                case "SUBWAY":
-                    //go to SUBWAY;
-                    //description
-                    //if all encounters completed, final unlocked
-                    break;
-                case "SUBWAY ENTRANCE":
-                    //go to SUBWAY ENTRANCE;
-                    //description
-                    //no encounter
-                    break;
-                case "BOOKSTORE":
-                    //go to BOOKSTORE;
-                    //description
-                    break;
-                case "COFFEE SHOP":
-                    //go to COFFEE SHOP;
-                    //description
-                    break;
-                case "CROSSWALK":
-                    //go to CROSSWALK;
-                    //description
-                    break;
-                case "PARK":
-                    //go to PARK;
-                    //description
-                    break;
-                case "SWING SET":
-                    //go to SWING SET;
-                    //description
-                    break;
-                case "LAKE":
-                    //go to LAKE;
-                    //description
-                    break;
-                default:
-                    msg = verb + " (not yet implemented)";
-                    break;
-            }
-        }
-        return msg;
-    }
+//    public String parseCommand(List<String> wordlist) { //creating String method parseCommand with List<String> wordlist as a parameter
+//        String msg; // Declaring String msg
+//        if (wordlist.size() == 1) { // if player enters one word
+//            msg = processVerb(wordlist); // try to process as verb
+//        } //else if (wordlist.size() == 2) { //if player enters two words
+////            msg = processVerbNoun(wordlist); // try to process as verb then noun
+//        //}
+//        else {
+//            msg = "Sorry, didn't catch that..."; //else say only two commands allowed
+//        }
+//        return msg;
+//    }
 
-    public String parseCommand(List<String> wordlist) { //creating String method parseCommand with List<String> wordlist as a parameter
-        String msg; // Declaring String msg
-        if (wordlist.size() == 1) { // if player enters one word
-            msg = processVerb(wordlist); // try to process as verb
-        } //else if (wordlist.size() == 2) { //if player enters two words
-//            msg = processVerbNoun(wordlist); // try to process as verb then noun
-        //}
-        else {
-            msg = "Sorry, didn't catch that..."; //else say only two commands allowed
-        }
-        return msg;
-    }
-
-    public static List<String> wordList(String input) { //make a list that takes in string objects called wordlist that has a parameter of String input
-        String delims = "[ \t,.:;?!\"']+"; //defining delimiter characters, used to split tokens (aka words)
-        List<String> strlist = new ArrayList<>(); //create an ArrayList object named strlist which is is List<String>
-        String[] words = input.split(delims); //takes in the input, splits the tokens between delims characters, and puts the output in an array of Strings called words
-
-        for (String word : words) { //for every word (initialized here) in words String array (initialized in line 192)
-            strlist.add(word); //add word into strlist (initialized on line 191)
-        }
-        return strlist; //Once for loop is completed, return strlist (initialized on line 191)
-    }
+//    public static List<String> wordList(String input) { //make a list that takes in string objects called wordlist that has a parameter of String input
+//        String delims = "[ \t,.:;?!\"']+"; //defining delimiter characters, used to split tokens (aka words)
+//        List<String> strlist = new ArrayList<>(); //create an ArrayList object named strlist which is is List<String>
+//        String[] words = input.split(delims); //takes in the input, splits the tokens between delims characters, and puts the output in an array of Strings called words
+//
+//        for (String word : words) { //for every word (initialized here) in words String array (initialized in line 192)
+//            strlist.add(word); //add word into strlist (initialized on line 191)
+//        }
+//        return strlist; //Once for loop is completed, return strlist (initialized on line 191)
+//    }
 
     public void showIntro(){
         String s;
@@ -208,24 +192,3 @@ public class Game {
     }
 
 }
-
-//package gameobjects;
-//
-//public class Protagonist extends EncounterCount {
-//
-//    private Room location; // Room where Protagonist is at present
-//
-//    public Protagonist(String aName, String aDescription, Room aRoom, Encounter tl) {
-//        super(aName, aDescription, tl);
-//        location = aRoom;
-//    }
-//
-//    public void setLocation(Room aRoom) {
-//        location = aRoom;
-//    }
-//
-//    public Room getLocation() {
-//        return location;
-//    }
-//
-//}

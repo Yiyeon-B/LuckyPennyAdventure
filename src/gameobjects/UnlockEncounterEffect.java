@@ -10,8 +10,10 @@ public class UnlockEncounterEffect extends Effect { //encounter is owned by a ro
         this.changedEncounter = changedEncounter;
     }
 
-    public void applyEffect() {
-        changedRoom.setEncounter(changedEncounter); //check this
+
+
+    public void applyEffect(boolean doesHelp) {
+        changedRoom.setEncounter(changedEncounter);
     }
 
 }
