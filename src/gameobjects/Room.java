@@ -13,12 +13,31 @@ public class Room {
         this.encounter = encounter;
     }
 
+    public Room(String name, String description) {
+        this(name, description, null);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public void setDescription(String changedDescription) {
         description = changedDescription;
     }
 
+    public Encounter giveEncounter() {
+        Encounter result = encounter;
+        encounter = null;
+        return result;
+    }
+
     public void setEncounter(Encounter changedEncounter) {
-        encounter = changedEncounter;
+        if(encounter == null){
+            encounter = changedEncounter; //ideally, error should be thrown if encounter is not null. Alas, time constraints
+        }
     }
 }

@@ -1,24 +1,28 @@
 package gameobjects;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Encounter {
 
     private String description;
     private String resolutionYes;
     private String resolutionNo;
-    private Effect effect; //effect will change description, unlock final encounter
+    private Set<Effect> effectSet; //Set of Effects because we might want many effects from one Encounter. Therefore, an encounter needs to own many effects. effect will change description, unlock final encounter
 
-    public Encounter(String description, String resolutionYes, String resolutionNo, Effect effect) {
+
+
+    public Encounter(String description, String resolutionYes, String resolutionNo) {
         this.description = description;
         this.resolutionYes = resolutionYes;
         this.resolutionNo = resolutionNo;
-        this.effect = effect;
-    }
-
-    public Encounter(String description, String resolutionYes, String resolutionNo) { //if the constructor is called with three arguments, use this constructor. It will call the four argument constructor but assign the effect value to null
-        this(description, resolutionYes, resolutionNo, null);
+        this.effectSet = new HashSet<Effect>(4); //encounters generally have two effects; double that just to be safe
     }
 
     public String resolveEncounter(boolean doesHelp) {
+        for (Effect effect : effectSet) { // for every effect in effectSet, call the code in the body
+            effect.applyEffect(doesHelp);
+        }
         if(doesHelp) {
             return resolutionYes;
         } else {
@@ -28,6 +32,10 @@ public class Encounter {
 
     public String getDescription() {
         return description;
+    }
+
+    public void addEffect(Effect newEffect) { //adds an Effect to effectSet
+        effectSet.add(newEffect);
     }
 
 }
