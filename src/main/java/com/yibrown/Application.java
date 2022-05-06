@@ -1,9 +1,10 @@
-package globals;
+package com.yibrown;
 
-import game.Game;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import com.yibrown.game.Game;
 
 public class Application {
 

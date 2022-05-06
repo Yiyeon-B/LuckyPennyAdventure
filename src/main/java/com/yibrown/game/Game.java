@@ -1,8 +1,12 @@
-package game;
+package com.yibrown.game;
 
 import java.util.*;     // required for ArrayList
 
-import gameobjects.*;
+import com.yibrown.game.effects.DescriptionChangeEffect;
+import com.yibrown.game.effects.Effect;
+import com.yibrown.game.effects.UnlockEncounterEffect;
+import com.yibrown.game.core.Encounter;
+import com.yibrown.game.core.Room;
 
 public class Game {
 

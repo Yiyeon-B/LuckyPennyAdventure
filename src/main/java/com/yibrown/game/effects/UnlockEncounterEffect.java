@@ -1,4 +1,7 @@
-package gameobjects;
+package com.yibrown.game.effects;
+
+import com.yibrown.game.core.Encounter;
+import com.yibrown.game.core.Room;
 
 public class UnlockEncounterEffect extends Effect { //encounter is owned by a room. This class gives rooms encounters. Need to know which room to give an encounter, whether the room has an encounter, and an encounter to give
 

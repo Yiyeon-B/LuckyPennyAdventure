@@ -1,7 +1,9 @@
-package gameobjects;
+package com.yibrown.game.core;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.yibrown.game.effects.Effect;
 
 public class Encounter {
 
