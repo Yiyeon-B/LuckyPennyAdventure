@@ -27,8 +27,8 @@ public class Game {
     public Game() {
 
         // Define rooms
-        Room hallway = new Room("hallway", "a hallway in the Damascus house");
-        Room bathroom = new Room("bathroom", "a bathroom in the Damascus house");
+        Room hallway = new Room("hallway", "a hallway in a large, drafty house");
+        Room bathroom = new Room("bathroom", "a bathroom in a large, drafty house");
 
         // Define encounters
         Encounter tapEncounter = new Encounter(
@@ -37,14 +37,14 @@ public class Game {
                 "The tap remains on.");
         Encounter finalEncounter = new Encounter(
                 "Are you proud of yourself?",
-                "Monkey purrs.",
-                ";(");
+                "You feel a great sense of pride at your home owner stewardship.",
+                "Sure, why not.");
 
         // Define encounter effects
         DescriptionChangeEffect changeBathroom = new DescriptionChangeEffect(
                 bathroom,
-                "The bathroom in the Damascus house, but less moist.",
-                "The bathroom in the Damascus house is ultra moist");
+                "The bathroom in the Damascus house, but less moist. This is probably a good thing.",
+                "The bathroom in the Damascus house is ultra moist. The frogs are happy but the home owner's association is not.");
 
         UnlockEncounterEffect unlockFinalEncounter = new UnlockEncounterEffect(hallway, finalEncounter);
         unlockFinalEncounter.addDependentEncounter(tapEncounter); // only unlock finalEncounter once tapEncounter is done
