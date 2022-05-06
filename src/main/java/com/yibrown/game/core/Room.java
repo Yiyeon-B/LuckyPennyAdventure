@@ -40,4 +40,9 @@ public class Room {
             encounter = changedEncounter; //ideally, error should be thrown if encounter is not null. Alas, time constraints
         }
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
