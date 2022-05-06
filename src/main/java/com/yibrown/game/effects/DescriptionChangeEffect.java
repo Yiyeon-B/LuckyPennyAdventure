@@ -1,4 +1,6 @@
-package gameobjects;
+package com.yibrown.game.effects;
+
+import com.yibrown.game.core.Room;
 
 public class DescriptionChangeEffect extends Effect {
 

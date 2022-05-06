@@ -1,4 +1,4 @@
-package gameobjects;
+package com.yibrown.game.effects;
 
 public abstract class Effect {
 

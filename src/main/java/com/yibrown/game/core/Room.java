@@ -1,4 +1,4 @@
-package gameobjects;
+package com.yibrown.game.core;
 
 public class Room {
 
@@ -39,5 +39,10 @@ public class Room {
         if(encounter == null){
             encounter = changedEncounter; //ideally, error should be thrown if encounter is not null. Alas, time constraints
         }
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
