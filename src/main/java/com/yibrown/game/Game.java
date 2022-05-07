@@ -113,7 +113,7 @@ public class Game {
     public String getIntro() {
 
         return """
-                You have come into existence.
+                Behold, you have come into existence.
                 """;
     }
 
