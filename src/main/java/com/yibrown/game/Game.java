@@ -29,6 +29,7 @@ public class Game {
         // Define rooms
         Room subway = new Room("subway", "a magical place where humans hop on an underground train \nand get whisked away to a destination of their heart's desire!");
         Room subwayEntrance = new Room("subway entrance", "Right outside the entrance to your home and before the whole, wide world!");
+        Room park = new Room("park", "A lovely recreational area. \nIt has a calming effect on coins and humans.");
 
         // Define encounters
         Encounter subwayEntranceEncounter = new Encounter(
@@ -73,6 +74,32 @@ public class Game {
                             \nYou smile and roll away.
                             """,
                 "Best to let sleeping dogs lie.");
+
+        Encounter parkEncounter = new Encounter("""
+                                            \nYou bounce along the sidewalk across the park.
+                                            \nAlong the way you pass by a pair of dirty white sneakers. They march around, looking very hard for their mittens.
+                                            \nThey look quite worried - the mittens must be very important to them.
+                                            \nYou vow to keep an eye out.
+                                            \nYou eventually roll across a shady grove. It's usually pretty secluded here...
+                                            \n...but what's this?
+                                            \nYou witness a small brown dog sniffing around in circles, its leash dragging on the ground.
+                                            \nYou creep a little closer... 
+                                            \nThe collar has a tag that reads "MITTENS".
+                                            \nThese two look in need of a little luck, don't you think?
+                                            \n[YES/NO]   
+                                            """, """
+                                              \nYou roll up to the small dog and flip back and forth to catch its attention.
+                                              \nIt barks at you, wagging its tail.
+                                              \nYou skip along back to the main area of the park, and it follows you excitedly.
+                                              \nThe dirty white sneakers rush up to you. 
+                                              \n"Mittens!"
+                                              \nJust before you are caught in a slobbery mouth, the dog is whisked away.
+                                              \n"I was looking all over for you... You can't just run off like that!"
+                                              \nYou let out a sigh of relief and watch the pair walk away.
+                                             """, """
+                                               \nThe dog looks fine!
+                                               \nYou roll along your merry way. 
+                                             """);
         Encounter finalEncounter = new Encounter(
                 "Do you think you did your best today?",
                 "You roll back to your favorite place and watch the people pass by, feeling content.",
@@ -85,25 +112,28 @@ public class Game {
                 "Right outside the entrance to your home. It sure was a lot of working going up \nthose stairs. Maybe it's time for a nap...");
 
         UnlockEncounterEffect unlockFinalEncounter = new UnlockEncounterEffect(subway, finalEncounter);
-        unlockFinalEncounter.addDependentEncounter(subwayEntranceEncounter); // only unlock finalEncounter once subwayEntranceEncounter is done
+        unlockFinalEncounter.addDependentEncounter(parkEncounter); // only unlock finalEncounter once parkEncounter is done
 
         EndGameEffect gameOverEffect = new EndGameEffect(this);
 
         // Setup effects for encounters
         subwayEntranceEncounter.addEffect(changeSubwayEntrance);
-        subwayEntranceEncounter.addEffect(unlockFinalEncounter);
+        parkEncounter.addEffect(unlockFinalEncounter);
         finalEncounter.addEffect(gameOverEffect);
 
         // Setup encounters for rooms
         subwayEntrance.setEncounter(subwayEntranceEncounter);
+        park.setEncounter(parkEncounter);
 
         // Setup map
-        List<Room> subwayEntranceConnections = new ArrayList<Room>(Arrays.asList(subwayEntrance));
-        List<Room> subwayConnections = new ArrayList<Room>(Arrays.asList(subway));
+        List<Room> subwayConnections = new ArrayList<Room>(Arrays.asList(subwayEntrance));
+        List<Room> subwayEntranceConnections = new ArrayList<Room>(Arrays.asList(subway, park));
+        List<Room> parkConnections = new ArrayList<Room>(Arrays.asList(subwayEntrance));
 
         map = new HashMap<>();
-        map.put(subway, subwayEntranceConnections);
-        map.put(subwayEntrance, subwayConnections);
+        map.put(subway, subwayConnections);
+        map.put(subwayEntrance, subwayEntranceConnections);
+        map.put(park, parkConnections);
 
         // Setup starting game state
         currentRoom = subway;
