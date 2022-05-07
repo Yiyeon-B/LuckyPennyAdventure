@@ -28,10 +28,10 @@ public class Game {
 
         // Define rooms
         Room subway = new Room("subway", "a magical place where humans hop on an underground train \nand get whisked away to a destination of their heart's desire!");
-        Room subwayEntrance = new Room("subway entrance", "Right outside the entrance to your home and before the whole, wide world! \nYou can go anywhere from here!");
+        Room subwayEntrance = new Room("subway entrance", "Right outside the entrance to your home and before the whole, wide world!");
 
         // Define encounters
-        Encounter tapEncounter = new Encounter(
+        Encounter subwayEntranceEncounter = new Encounter(
                 """
                           \nYou bounce up the steps, deftly darting between shoes and ankles before bursting outside!
                           \nYou breathe in the fresh inner city smog and smile.       
@@ -85,25 +85,25 @@ public class Game {
                 "Right outside the entrance to your home. It sure was a lot of working going up \nthose stairs. Maybe it's time for a nap...");
 
         UnlockEncounterEffect unlockFinalEncounter = new UnlockEncounterEffect(subway, finalEncounter);
-        unlockFinalEncounter.addDependentEncounter(tapEncounter); // only unlock finalEncounter once tapEncounter is done
+        unlockFinalEncounter.addDependentEncounter(subwayEntranceEncounter); // only unlock finalEncounter once subwayEntranceEncounter is done
 
         EndGameEffect gameOverEffect = new EndGameEffect(this);
 
         // Setup effects for encounters
-        tapEncounter.addEffect(changeSubwayEntrance);
-        tapEncounter.addEffect(unlockFinalEncounter);
+        subwayEntranceEncounter.addEffect(changeSubwayEntrance);
+        subwayEntranceEncounter.addEffect(unlockFinalEncounter);
         finalEncounter.addEffect(gameOverEffect);
 
         // Setup encounters for rooms
-        subwayEntrance.setEncounter(tapEncounter);
+        subwayEntrance.setEncounter(subwayEntranceEncounter);
 
         // Setup map
-        List<Room> hallwayConnections = new ArrayList<Room>(Arrays.asList(subwayEntrance));
-        List<Room> bathroomConnections = new ArrayList<Room>(Arrays.asList(subway));
+        List<Room> subwayEntranceConnections = new ArrayList<Room>(Arrays.asList(subwayEntrance));
+        List<Room> subwayConnections = new ArrayList<Room>(Arrays.asList(subway));
 
         map = new HashMap<>();
-        map.put(subway, hallwayConnections);
-        map.put(subwayEntrance, bathroomConnections);
+        map.put(subway, subwayEntranceConnections);
+        map.put(subwayEntrance, subwayConnections);
 
         // Setup starting game state
         currentRoom = subway;
