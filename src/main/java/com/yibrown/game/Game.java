@@ -122,7 +122,7 @@ public class Game {
                                              particularly interesting.
                                              \nIt suddenly lifts its head - another dog sighted across the street!
                                              \nThe brown dog breaks into a sprint across the grove and into the road,
-                                             where it became... well-acquainted with a semi-truck.
+                                             where it became well-acquainted with a semi-truck.
                                              """);
         Encounter finalEncounter = new Encounter(
                 "Do you think you did your best today?",
