@@ -34,71 +34,95 @@ public class Game {
         // Define encounters
         Encounter subwayEntranceEncounter = new Encounter(
                 """
-                          \nYou bounce up the steps, deftly darting between shoes and ankles before bursting outside!
-                          \nYou breathe in the fresh inner city smog and smile.       
-                          \nJust before you decide to keep rolling, you pause to watch a pair of bright red heels
-                          \nrush by a newspaper stand.
-                          \nThe heels go marching past but then slowly come to a halt and turn around.    
+                          \nYou bounce up the steps, darting between shoes and ankles and bursting outside!
+                          \nYou move out of the way of foot traffic, breathe in the fresh inner city smog, and smile.       
+                          \nWhat a great day! 
+                          \nThen again - when wasn't it?
+                          \nJust before you decide to keep rolling you notice a flash of bright red heels 
+                          rush past a newspaper stand.
+                          \nThe heels march onwards (towards very important business, you imagine)
+                          but then slowly come to a halt. 
+                          \nThey turn around.    
                           \n"James?"
-                          \nA pair of black suede shoes facing the stand turn to face the red heels. 
-                          \n"Jenny?"
+                          \nThe pair of black suede shoes facing the newspaper stand turn to face the red heels. 
+                          \n"...Jenny?"
                           \nThe red heels take a step forward. "Oh my goodness! It's been-"
-                          \n"-six years now, hasn't it?" One of the suede shoes scuffs the pavement.
-                          \n"Yes! Yes..." The left red heel hooks around the other ankle. "The time sure does fly..."
+                          \n"-six years now, hasn't it?" 
+                          \n"Yes! Yes..." A red heel hooks around an ankle. "Time flies, doesn't it?
+                          How have you been?"
+                          \nOne of the suede shoes scuffs the pavement. "I've been doing... well. Quite well."
+                          \n"Do you still paint?"
+                          \n"I do."
+                          \n"I'm glad some things don't change."
+                          \n"As am I."
                           \nA beat of silence.
                           \n"Well... It's good to see you looking well, Jenny. Truly."
                           \n"Thank you, James." 
                           \nA slightly longer silence.
-                          \nThe suede shoes slightly turn away. "You look busy as always - I wouldn't want to hold you."
+                          \nThe suede shoes begin to turn away. "You look busy as always - 
+                          I wouldn't want to hold you back."
                           \n"No, not at all, James, never! It was... good to see you as well."
-                          \nThe suede shoes turn back to the stand. After a few moments, the red heels turn away as well,
-                          \nand slowly begin to walk away...
-                          \n
+                          \nThe suede shoes turn back to the stand. 
+                          \nAfter a few moments the red heels turn away as well, slowly walking away...
                           \nThese two look in need of a little luck, don't you think?
-                          \n[YES/NO]
+                          [YES/NO]
                           """,
                 """
-                            \nYou look up from the red heels and see a white handkerchief sticking out of an equally red purse.
+                            \nYou look up from the red heels and see a white handkerchief
+                            sticking out of an equally red purse.
                             \nYou roll as fast as you can before the red heels, skid to a stop,
-                            \nand take a mighty leap, snagging the handkerchief and rolling away...
-                            \n...and towards the black suede shoes.
-                            \nAs you deposit the handkerchief onto the shoes, you discreetly slip under the newspaper stand.
-                            \nYou witness the red heels return in a flurry of steps.
+                            and take a mighty leap, snagging the handkerchief and rolling away...
+                            \n...towards the black suede shoes.
+                            \nYou deposit the handkerchief onto them and discreetly slip under the newspaper stand.
+                            \nThe red heels return in a flurry of steps.
                             \n"Oh! Well, I - How embarrassing! Thank you, James."
-                            \n"Nothing embarrassing about the wind. Hope it isn't too dirty..."
-                            \n"It looks just fine. Thank you."
+                            \n"Nothing to be embarrassed about." A hand leans over and plucks the handkerchief.
+                            "Hope it isn't too dirty..."
+                            \n"It looks just fine... Thank you."
                             \nAnother pause.
                             \n"James?"
                             \n"Yes, Jenny?"
                             \n"Would you like to go out for coffee?"
-                            \nYou smile and roll away.
                             """,
-                "Best to let sleeping dogs lie.");
+                """
+                           \nAfter some distance you think you see the red shoes pause
+                           \nbut before you can tell, a small crowd gets in the way.
+                           \nBy the time they pass, the red heels have continued walking.
+                           \nThe black suede shoes turn to watch them go.
+                           \nThe two of you watch the red heels walk further and further away 
+                           until the flashes of red round a corner and disappear.
+                           """);
 
         Encounter parkEncounter = new Encounter("""
-                                            \nYou bounce along the sidewalk across the park.
-                                            \nAlong the way you pass by a pair of dirty white sneakers. They march around, looking very hard for their mittens.
-                                            \nThey look quite worried - the mittens must be very important to them.
-                                            \nYou vow to keep an eye out.
+                                            \nYou bounce along the sidewalk to the park.
+                                            \nAlong the way you pass by a pair of dirty white sneakers. They march around
+                                            back and forth, around in circles, looking very hard for their mittens.
+                                            \nThe mittens must be very important to them. You vow to keep an eye out.
                                             \nYou eventually roll across a shady grove. It's usually pretty secluded here...
                                             \n...but what's this?
-                                            \nYou witness a small brown dog sniffing around in circles, its leash dragging on the ground.
-                                            \nYou creep a little closer... 
+                                            \nYou witness a brown cat-sized dog sniffing around in circles, its leash
+                                            dragging on the ground.
+                                            \nYou creep a little closer...
                                             \nThe collar has a tag that reads "MITTENS".
                                             \nThese two look in need of a little luck, don't you think?
-                                            \n[YES/NO]   
+                                            [YES/NO]   
                                             """, """
-                                              \nYou roll up to the small dog and flip back and forth to catch its attention.
-                                              \nIt barks at you, wagging its tail.
-                                              \nYou skip along back to the main area of the park, and it follows you excitedly.
-                                              \nThe dirty white sneakers rush up to you. 
-                                              \n"Mittens!"
-                                              \nJust before you are caught in a slobbery mouth, the dog is whisked away.
-                                              \n"I was looking all over for you... You can't just run off like that!"
-                                              \nYou let out a sigh of relief and watch the pair walk away.
-                                             """, """
-                                               \nThe dog looks fine!
-                                               \nYou roll along your merry way. 
+                                            \nYou roll up to the small dog and flip back and forth to catch its attention.
+                                            \nIts gaze latches onto you. Then it barks, wagging its tail.
+                                            \nYou skip along a few steps, making sure the dog follows as you head back to
+                                            the main area of the park.
+                                            \nYou have a bit of a hard time keeping an eye out for the dirty white sneakers
+                                            while the dog tries its best to swallow you whole.   
+                                            \nLuckily, The dirty white sneakers rush up to you.
+                                            \n"Mittens!"
+                                            \nJust before you are caught in a slobbery mouth, the dog is whisked away.
+                                            \n"I was looking all over for you... You can't just run off like that!"
+                                            """, """
+                                             \nYou watch the dog sniff around in circles for a bit, not doing anything
+                                             particularly interesting.
+                                             \nIt suddenly lifts its head - another dog sighted across the street!
+                                             \nThe brown dog breaks into a sprint across the grove and into the road,
+                                             where it became... well-acquainted with a semi-truck.
                                              """);
         Encounter finalEncounter = new Encounter(
                 "Do you think you did your best today?",
@@ -160,6 +184,7 @@ public class Game {
     private void appendMovementInfo() {
         appendInfo("Where would you like to roll off to?");
         appendInfo(map.get(currentRoom).toString());
+        appendInfo("[or press q to quit]");
     }
 
     private void appendCurrentState() {
