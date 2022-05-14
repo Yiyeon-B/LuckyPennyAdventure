@@ -21,7 +21,7 @@ public class Game {
     private Map<Room, List<Room>> map; // Created a Map with key value pair of Room to ArrayList of Room(s) named map. ArrayList<Room> shows a list of rooms you can enter from the specified Room
     private Room currentRoom;
     private Encounter currentEncounter;
-    private String nextInfo; // would be more efficient as a StringBuilder
+    private String nextInfo; // would be more efficient as a StringBuilder. When you add text into a String, it makes a new copy of everything and adds the new characters. Over time and with long strings, this can be very inefficient and slow down the program. A StringBuilder collects text in a buffer until it's called. Then it turns all the data into a String and outputs it
     private boolean gameOver;
 
     public Game() {
@@ -136,13 +136,15 @@ public class Game {
                 "Right outside the entrance to your home. It sure was a lot of working going up \nthose stairs. Maybe it's time for a nap...");
 
         UnlockEncounterEffect unlockFinalEncounter = new UnlockEncounterEffect(subway, finalEncounter);
-        unlockFinalEncounter.addDependentEncounter(parkEncounter); // only unlock finalEncounter once parkEncounter is done
+        unlockFinalEncounter.addDependentEncounter(parkEncounter);
+        unlockFinalEncounter.addDependentEncounter(subwayEntranceEncounter); //139 and 140 unlock final encounter
 
         EndGameEffect gameOverEffect = new EndGameEffect(this);
 
         // Setup effects for encounters
         subwayEntranceEncounter.addEffect(changeSubwayEntrance);
         parkEncounter.addEffect(unlockFinalEncounter);
+        subwayEntranceEncounter.addEffect(unlockFinalEncounter); //*cp
         finalEncounter.addEffect(gameOverEffect);
 
         // Setup encounters for rooms
@@ -215,7 +217,7 @@ public class Game {
     }
 
     public String info() {
-        String result = nextInfo;
+        String result = nextInfo; //nextInfo is a buffer. A buffer is like a bus stop. The stuff waits until called.
         nextInfo = "";
         return result;
     }
