@@ -10,7 +10,7 @@ import com.yibrown.game.core.Room;
 
 public class Game {
 
-    private static Set<String> EXIT_COMMANDS = new HashSet<>(Arrays.asList("Q", "QUIT"));
+    private static Set<String> EXIT_COMMANDS = new HashSet<>(Arrays.asList("Q", "QUIT")); // creating an Array which has the 2 elements (QUIT & Q), covering it up with the List interface (which extends the Collection interface), and passing that in as input to a new HashSet, thus creating a Set with the two elements QUIT and Q. It's necessary to do it this way because HashSet can only be declared with no input (new HashSet<>()), an initial capacity (new HashSet<>(50)), or initial input in an object which extends the interface Collection (new HashSet<>(myListOfItems))
     private static Map<String, Boolean> ENCOUNTER_COMMANDS = Map.ofEntries(
             new AbstractMap.SimpleEntry<>("Y", Boolean.TRUE),
             new AbstractMap.SimpleEntry<>("YES", Boolean.TRUE),
@@ -126,7 +126,7 @@ public class Game {
                                              """);
         Encounter finalEncounter = new Encounter(
                 "Do you think you did your best today?",
-                "You roll back to your favorite place and watch the people pass by, feeling content.",
+                "You roll back to your favorite place and watch the people pass by, feeling content...",
                 "That's the thing - there's always tomorrow!");
 
         // Define encounter effects
