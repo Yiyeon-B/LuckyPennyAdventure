@@ -126,7 +126,7 @@ public class Game {
                                              """);
         Encounter finalEncounter = new Encounter(
                 "Do you think you did your best today?",
-                "You roll back to your favorite place and watch the people pass by, feeling content...",
+                "You roll back to your favorite place and watch the people pass by, feeling content.",
                 "That's the thing - there's always tomorrow!");
 
         // Define encounter effects
